@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>拾知 · 模型设置</title><link rel="stylesheet" href="styles.css"></head><body class="options-body">
+<main class="options-main"><a class="brand" href="panel.html"><span class="brand-mark">拾</span><strong>拾知<small>让理解，留在阅读里。</small></strong></a><span class="eyebrow settings-eyebrow">MAKE YOURSELF AT HOME</span><h1>连接你的模型。</h1><p class="muted">支持聊天补全接口；密钥只保存在此浏览器的扩展本地存储，不同步到网页。</p>
+<section class="diagnostics-section"><h2>跨网页自动陪读</h2><label class="check"><input id="auto-read" type="checkbox">在普通网页自动显示宠物</label><p class="muted">开启时由浏览器申请 HTTP / HTTPS 网站访问权限。新网页自动出现，已打开的网页在切换过去时启用。只出现宠物不会调用模型，提问时才发送阅读材料。浏览器设置页、扩展商店等受限页面除外。</p><p class="muted">关闭后停止自动出现；已有宠物可收起，刷新后生效。保留已授予的域名权限，避免影响模型和图片接口；可在浏览器扩展设置中管理授权。</p><p id="auto-read-status" class="status" role="status"></p></section>
+<form id="settings-form" class="settings-form">
+<label>API 基础地址<input id="base-url" type="url" required placeholder="https://api.deepseek.com"><small>填写到 /v1 等基础路径；也可填写完整 /chat/completions 地址。本地模型支持 localhost HTTP。</small></label>
+<label>API Key<input id="api-key" type="password" autocomplete="off" placeholder="本地无鉴权模型可留空"></label>
+<label>模型名称<input id="model" required placeholder="填写服务商提供的模型 ID"></label>
+<label class="check"><input id="tools" type="checkbox">允许 AI 按需补读原文<small>模型需要支持工具调用；不支持时关闭，使用代码预先选取的材料。</small></label>
+<div class="controls"><label>上下文预算（估算 tokens）<input id="input-budget" type="number" min="4000" max="64000" step="1000" required></label><label>单次输出上限<input id="max-output" type="number" min="256" max="4096" step="1" required></label></div>
+<label class="check"><input id="auto-notes" type="checkbox">回答完成后自动整理笔记<small>会额外请求一次模型，合并同一疑惑的理解。笔记保存在本地，可撤销、编辑与导出。</small></label>
+<label class="check"><input id="review-answers" type="checkbox">解释自检：少复述，讲到点上<small>回答过长或明显重复原文时，额外请求一轮模型提炼；合格回答直接显示。</small></label>
+<p class="muted">保存时仅为你填写的 API 域名申请网络权限。阅读资料会在你提问时发送给该服务。</p>
+<div class="settings-actions"><button class="primary" type="submit">保存并授权接口</button><button id="test-model" type="button">测试连接</button></div>
+</form><p id="options-status" class="status" role="status"></p>
+<section class="diagnostics-section"><h2>讲解图片与插画</h2><p class="muted">原文图片可直接使用。新插画通过独立的图片生成接口获取，只有你点击“生成插画”时才会调用。支持 Images Generations 格式；聊天接口的模型、密钥不会自动带到这里。</p>
+<form id="image-settings-form" class="settings-form">
+<label class="check"><input id="image-enabled" type="checkbox">启用图片生成</label>
+<label>图片 API 基础地址<input id="image-base-url" type="url" placeholder="https://你的图片服务/v1"><small>也可填写完整 /images/generations 地址。</small></label>
+<label>图片 API Key<input id="image-api-key" type="password" autocomplete="off"></label>
+<label>图片模型名称<input id="image-model" placeholder="图片服务支持的模型 ID"></label>
+<label>图片尺寸<select id="image-size"><option>1024x1024</option><option>1536x1024</option><option>1024x1536</option><option>auto</option></select></label>
+<button class="primary" type="submit">保存图片接口</button><p id="image-status" class="status" role="status"></p>
+</form><details><summary>接口返回图片链接时的下载授权</summary><p class="muted">有些服务返回单独的 CDN 链接。填写该图片域名授权下载；推荐使用直接返回 base64 图片的接口。</p><form id="image-download-form" class="settings-form"><label>图片下载域名<input id="image-download-origin" type="url" placeholder="https://图片CDN域名" required></label><button type="submit">授权下载域名</button></form></details></section>
+<section class="diagnostics-section"><span class="eyebrow">KEEP THINGS RUNNING SMOOTHLY</span><h2>本地诊断日志</h2><label class="check"><input id="diagnostics-enabled" type="checkbox">记录运行阶段、耗时与错误类型</label><p class="muted">最多保留 200 条；不记录密钥、网页地址、原文、问题、回答或笔记内容，不自动上传。安装此版本后开始记录。</p><button id="export-diagnostics" type="button">导出诊断日志</button><p id="diagnostics-status" class="status" role="status"></p></section>
+<details class="context-details"><summary>原型范围与素材来源</summary><p>当前支持普通文章网页；不读取视频、扫描 PDF、跨域 iframe。大肥鱼外观来自社区项目，正式公开发布前需完成素材来源核对或替换。详见扩展包 THIRD_PARTY_NOTICES.md。</p></details></main><script type="module" src="options.js"></script></body></html>

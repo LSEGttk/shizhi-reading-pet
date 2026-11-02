@@ -1,0 +1,55 @@
+{
+  "repository": "https://github.com/bauerelizabeth07139/dsh-pet-dafeiyu",
+  "commit": "fc1ad4c0fa29ee29338a469c74ebe7776bf3d66a",
+  "license": "MIT (repository declaration); artwork derived from community source images; provenance requires review before public distribution",
+  "files": [
+    {
+      "file": "assets/icon.png",
+      "sha256": "9277c6189cad1ba41a4da78a6083e3ac88c7167a194734bfa19248469382d08f"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-idle.png",
+      "sha256": "1e979086c8ebca0be368ade78c75ac55c2d87eb62639e5d38c15c339f5b32411"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-blink.png",
+      "sha256": "47475e02c09602c42d93b0dbfa8ff85087587ff2123b75d9096ec466a75c872e"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-think.png",
+      "sha256": "340a206e8cd7a0c989e2182bcb44dbd7447e17dc106a7336015d081d0354255e"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-talk.png",
+      "sha256": "d8706d31ebd8eb21dc82641ecd1440180bd64636a5390187b61bec094499fe37"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-happy.png",
+      "sha256": "813d320982f5df340ea67e5cd9cb0dd97fa4f3ee76a4431a0504693606f60ef6"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-sad.png",
+      "sha256": "a1cf9aa4d817d07bf19d5309642bf0db023cc621ffacc6f95783a30d64ec8b8b"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-sleep.png",
+      "sha256": "e6219a6a588ab469d9a3a9f7f6ba6b5c1f608197c53434ef3675751dd7938e3c"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-wave.png",
+      "sha256": "dfcea8339b970d6e9e75c303d5ee14c83cdb9c6ca7ab3f5039850f688a2ce211"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-walk1.png",
+      "sha256": "4ac1761735f176ca631bb152ce84f955a011484557785267034e965c63ec7f9a"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-walkpass.png",
+      "sha256": "9160666185ca27fa8d44c7460974aadaaf2a544a253a9b4c673a4993f92e551d"
+    },
+    {
+      "file": "assets/sprites/dafeiyu-walk2.png",
+      "sha256": "75fdc51f339916413d2f08cbd8835022d377cd146affc392bc980b2c214b3d0f"
+    }
+  ]
+}

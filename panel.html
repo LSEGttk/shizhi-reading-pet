@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>拾知 · 陪你读懂</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="vendor/katex.min.css"><link rel="stylesheet" href="rich.css"></head>
+<body>
+  <header class="topbar"><a class="brand" href="#" aria-label="拾知首页"><span class="brand-mark">拾</span><strong>拾知<small>READ A LITTLE, UNDERSTAND MORE</small></strong></a><button id="settings" class="icon-button" title="模型设置" aria-label="模型设置">⚙</button></header>
+  <nav class="tabs" aria-label="功能"><button class="active" id="read-tab">陪我读</button><button id="knowledge-tab">知识讲解</button><button id="notes-tab">理解笔记 <span id="note-count">0</span></button></nav>
+  <main id="read-view">
+    <section class="intro"><span class="eyebrow">A LITTLE COMPANY FOR YOUR MIND</span><h1>把不懂的地方，<br>慢慢读懂<span>。</span></h1><p>划一小段，聊清一个问题，然后继续读。</p></section>
+    <section class="page-card"><div class="section-caption"><span>正在阅读</span><button id="refresh" class="text-button">重新读取 ↻</button></div><h2 id="page-title">先打开一篇你想读的文章</h2><p id="page-meta">点击浏览器工具栏中的拾知图标，开始陪读。</p></section>
+    <section id="selection-card" class="selection-card" hidden><span class="eyebrow">你划出的这一处</span><blockquote id="selection-text"></blockquote><button id="clear-selection" class="text-button">改为整篇提问</button></section>
+    <div class="controls"><label>阅读范围<select id="scope"><option value="article">当前文章</option><option value="passage">只看附近</option><option value="notes">文章＋我的笔记</option></select></label><label>解释深度<select id="depth"><option value="context" selected>结合上下文</option><option value="brief">一句话点破</option><option value="example">原理＋例子</option><option value="deep">深入讲解</option></select></label></div>
+    <p id="mode-hint" class="mode-hint">侧栏按上下文展开，气泡保持简短；切换方式后可重讲上一问。</p><button id="reexplain" class="text-button reexplain-button" type="button" hidden>按此方式重讲上一问 ↻</button>
+    <div id="quick-actions" class="quick-actions"><button data-prompt="结合附近原文，解释选中内容在这里指什么、表达什么，补足理解这句话必要的概念。">讲懂这一处</button><button data-prompt="请用一个最小例子说明选中内容在当前段落中的含义。">举个例子</button><button id="knowledge-open" type="button">知识讲解 ↗</button><button data-prompt="这篇文章的主要观点与依据是什么？请精简回答。">文章重点</button></div>
+    <div id="conversation" class="conversation" aria-live="polite"></div>
+    <details id="context-details" class="context-details" hidden><summary>这次用了哪些上下文</summary><pre id="context-text"></pre></details>
+    <p id="status" class="status" role="status">正文在本地读取，主动提问后才发送给你配置的模型。</p>
+    <form id="ask-form" class="composer"><label class="sr-only" for="question">你想弄懂什么</label><textarea id="question" rows="2" maxlength="2000" placeholder="这句话在这里是什么意思？"></textarea><div class="composer-footer"><span>围绕疑惑，少一点信息负担</span><button id="send" class="primary" type="submit">问问它 ↗</button><button id="cancel" type="button" hidden>停止</button></div></form>
+    <div class="footer-note"><span class="dot"></span><span>自动整理本次理解 · 可在设置中关闭</span></div>
+  </main>
+  <main id="knowledge-view" hidden>
+    <section class="knowledge-intro"><span class="eyebrow">UNDERSTAND ONE THING WELL</span><h1>把这个知识点讲透。</h1><p>定义 → 原理 → 例子 → 延伸，围绕一个知识点展开。</p></section>
+    <section class="page-card"><div class="section-caption"><span>从当前阅读出发</span><button id="knowledge-from-selection" type="button" class="text-button">带入当前选区 ↙</button></div><h2 id="knowledge-context-title">先打开一篇文章</h2><blockquote id="knowledge-selection" class="knowledge-quote">可在文章中选中一处，也可直接填写一个知识点。</blockquote></section>
+    <form id="knowledge-overview-form" class="knowledge-overview-form"><label for="knowledge-topic">要讲解的知识点</label><input id="knowledge-topic" maxlength="160" required placeholder="例如：Embedding 输出形状"><label for="knowledge-scope">参考范围</label><select id="knowledge-scope"><option value="article">当前文章</option><option value="passage">只看附近</option><option value="notes">文章＋我的笔记</option></select><div class="knowledge-overview-actions"><button id="knowledge-start" class="primary" type="submit">开始讲解 ↗</button><button id="knowledge-cancel" type="button" hidden>停止</button></div></form>
+    <p id="knowledge-status" class="status" role="status">点击开始后才请求模型；知识讲解有独立的对话记录。</p>
+    <div id="knowledge-conversation" class="conversation" aria-live="polite"></div>
+    <details id="knowledge-context-details" class="context-details" hidden><summary>本次讲解参考了哪些材料</summary><pre id="knowledge-context-report"></pre></details>
+    <form id="knowledge-followup-form" class="composer" hidden><label class="sr-only" for="knowledge-question">继续追问这个知识点</label><textarea id="knowledge-question" rows="2" maxlength="1500" placeholder="哪一步还没理解？也可以只追问某个部分。" required></textarea><div class="composer-footer"><span>围绕这个知识点继续问</span><button id="knowledge-followup-send" class="primary" type="submit">继续问 ↗</button></div></form>
+  </main>
+  <main id="notes-view" hidden><div class="section-caption notes-heading"><div><span class="eyebrow">LITTLE THINGS YOU NOW KNOW</span><h1>理解留下来了。</h1></div><button id="export-notes" class="text-button">导出 Markdown ↗</button></div><div id="notes-list"></div></main>
+  <script type="module" src="panel.js"></script>
+</body></html>

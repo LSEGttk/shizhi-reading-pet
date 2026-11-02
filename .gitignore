@@ -1,0 +1,12 @@
+/node_modules
+dist/
+artifacts/
+*.zip
+*.crx
+*.pem
+*.key
+.private/
+.entire/
+.codex/
+.env
+.env.*
